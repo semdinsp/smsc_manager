@@ -1,0 +1,50 @@
+8
+
+dir
+21
+http://oliver.ficonab.com/svn2/rails/smsc_manager/config
+http://oliver.ficonab.com/svn2/rails
+
+
+
+2007-09-12T08:43:09.733976Z
+6
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ceeaca9f-745c-46d7-b156-2271164c1546
+
+database.yml
+file
+120
+
+
+
+2007-10-22T15:02:38.000000Z
+af6ef4e7d829730592e668aad7efcd84
+2007-10-22T15:04:09.923914Z
+120
+
+smsc.yml
+file
+
+
+
+
+2007-10-25T01:29:34.000000Z
+c5f10f1f4569a831583febe592b9f7d5
+2007-09-12T08:43:09.733976Z
+6
+

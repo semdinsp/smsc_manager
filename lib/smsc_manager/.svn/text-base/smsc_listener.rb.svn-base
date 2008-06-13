@@ -1,0 +1,42 @@
+require 'yaml'
+require 'rubygems'
+gem 'stomp'
+require 'stomp'
+require 'stomp'
+gem 'stomp_message'
+require 'stomp_message'
+module SmscManager
+class SmscListener < StompMessage::StompZActiveRecordServer
+   @@MAX_THROUGHPUT =5  # in messages per second
+   SLEEP_TIME=1/@@MAX_THROUGHPUT    #sleep x seconds to slow down system
+  attr_accessor :smsc
+  #need to define topic, host properly
+  # @@TOPIC='/topic/sms'
+  def initialize(options={})
+    self.model_list = []
+    self.model_list << "sms_log.rb"
+    super(options)
+    #self.smsc=SmscManager::SmscConnection.factory
+    puts "finished initializing"
+  end
+ def archive_sms(res,sms)
+   # do I need to do exception handling in here
+   flag= res.kind_of? Net::HTTPResponse
+   SmsLog.log_result(res, 'stomp_message', sms,flag )
+ end
+ def setup_thread_specific_items(mythread_number)
+    super(mythread_number)
+    puts " ----creating smsc for #{Thread.current[:name]}"
+    Thread.current[:smsc]= SmscManager::SmscConnection.factory
+  end
+  def stomp_SMS(msg, stomp_msg)
+     sms=SmscManager::Sms.load_xml(msg.body)
+      puts "#{Thread.current[:name]}sending sms #{msg.body}" if @debug
+     res= Thread.current[:smsc].send(sms)
+     archive_sms(res,sms)
+   #  sleep(SLEEP_TIME)  #only 5 messages per second max
+  end
+  
+end # smsc listener
+
+end #module

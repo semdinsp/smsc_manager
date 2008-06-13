@@ -1,0 +1,27 @@
+8
+
+dir
+116
+http://oliver.ficonab.com/svn2/rails/smsc_manager/app/models
+http://oliver.ficonab.com/svn2/rails
+
+
+
+2007-10-22T14:53:32.717924Z
+116
+
+
+
+svn:special svn:externals svn:needs-lock
+
+sms_log.rb
+file
+165
+
+
+
+2007-11-02T03:39:51.000000Z
+ae041a667791782cba7a0cac70032e66
+2007-11-21T13:12:33.306298Z
+165
+

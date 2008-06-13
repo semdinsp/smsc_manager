@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+# == Synopsis
+#   send sms via sdp
+# == Usage
+#   send_sms.rb -u user -m msisdn -s source -t text 
+# == Useful commands
+# jruby -S send_sms.rb -u scot -m 639999999988 -s 999 -t 'hello there' -T sms
+# == Author
+#   Scott Sproule  --- Ficonab.com (scott.sproule@ficonab.com)
+# == Copyright
+#    Copyright (c) 2007 Ficonab Pte. Ltd.
+#     See license for license details
+  
+   require 'optparse'
+   require 'rubygems'
+   gem 'stomp_message'
+   require 'stomp_message'
+   require 'rdoc/usage'
+
+    arg_hash=StompMessage::Options.parse_options(ARGV)
+    RDoc::usage if   arg_hash[:msisdn]==nil || arg_hash[:text] == nil || arg_hash[:source] == nil || arg_hash[:help]==true
+
+require 'pp'
+
+gem 'smsc_manager'
+require 'smsc_manager'
+
+    puts "Finding sms topic to use:"
+    begin
+      sms_sender=SmscManager::SmsSendTopic.new(arg_hash)  
+      sms_sender.setup_auto_close if !sms_sender.java?
+   rescue Exception => e
+      puts "exception found #{e.backtrace}" 
+   end  
+    
+     user=arg_hash[:user]
+     destination=arg_hash[:msisdn]
+     source=arg_hash[:source]
+     text=arg_hash[:text]
+     sms_sender.send_sms(text,destination,source)
+     puts "Sending user: #{user} destination: #{destination}  text: #{text}"
+     #sms_sender.setup_auto_close
+   #  res= smsc.send(sms)
+   #   puts "Response code: #{res.response} body: #{res.response_body}"  
+   #  puts "Response code: #{res}"  if res.kind_of? String
+   #  puts "pretty print response:"
+  #   pp res
+    # puts "Response code: #{res.} body: #{res.code}"  if res.kind_of? Net::Http
+      sms_sender.send_topic_jms_shutdown if sms_sender.java?
+    

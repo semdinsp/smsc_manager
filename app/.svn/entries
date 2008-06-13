@@ -1,0 +1,19 @@
+8
+
+dir
+116
+http://oliver.ficonab.com/svn2/rails/smsc_manager/app
+http://oliver.ficonab.com/svn2/rails
+
+
+
+2007-10-22T14:53:32.717924Z
+116
+
+
+
+svn:special svn:externals svn:needs-lock
+
+models
+dir
+

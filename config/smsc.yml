@@ -1,0 +1,5 @@
+--- !ruby/object:SmscManager::SmscConnection 
+hostname: localhost
+password: test
+port: "13013"
+username: test

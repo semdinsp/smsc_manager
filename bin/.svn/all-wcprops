@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn2/rails/!svn/ver/114/smsc_manager/bin
+END
+sms_print_xml.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn2/rails/!svn/ver/71/smsc_manager/bin/sms_print_xml.rb
+END
+send_sms_post.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn2/rails/!svn/ver/144/smsc_manager/bin/send_sms_post.rb
+END
+sms_om_server.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn2/rails/!svn/ver/144/smsc_manager/bin/sms_om_server.rb
+END
+sms_om_server_control.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn2/rails/!svn/ver/42/smsc_manager/bin/sms_om_server_control.rb
+END
+smsc_print_config.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn2/rails/!svn/ver/6/smsc_manager/bin/smsc_print_config.rb
+END
+sms_topic_server.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn2/rails/!svn/ver/144/smsc_manager/bin/sms_topic_server.rb
+END
+sms_topic_server_control.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn2/rails/!svn/ver/144/smsc_manager/bin/sms_topic_server_control.rb
+END
+send_sms_load_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn2/rails/!svn/ver/77/smsc_manager/bin/send_sms_load_test.rb
+END
+smsc_config.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn2/rails/!svn/ver/39/smsc_manager/bin/smsc_config.rb
+END
+send_sms_http.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn2/rails/!svn/ver/144/smsc_manager/bin/send_sms_http.rb
+END
+send_sms.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn2/rails/!svn/ver/144/smsc_manager/bin/send_sms.rb
+END
