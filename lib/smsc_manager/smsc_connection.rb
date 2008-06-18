@@ -6,7 +6,7 @@ module SmscManager
 class SmscConnection 
  # use block for timers etc
  @@timeout_max = 10 #10 second timeout to contact sms server
- attr_accessor :hostname, :port, :username, :password
+ attr_accessor :hostname, :port, :username, :password #, :portmap
   
  # def intialize(pass, user, port=13013, host='localhost')
  # end
@@ -72,6 +72,14 @@ class SmscConnection
    #  http://smsbox.host.name:13013/cgi-bin/sendsms?username=foo&password=bar&to=0123456&text=Hello+world
   
    # URL Encoded specific to Kannel that is why not part of model
+   # port map chooses which kannelport tosend it out on...
+   def portmap(src)
+     hash_port=Hash.new('26999')
+     ports = %w(930 999 991 992 913 )
+     ports.each { |p| hash_port[p]="26#{p}"  }
+    # puts "--- src is #{src} port is #{hash_port[src]}"
+     hash_port[src]
+   end
     def sms_send(sms)
       text= ERB::Util.html_escape(sms.text)
       txt_encoded=ERB::Util.url_encode(text)
@@ -81,13 +89,14 @@ class SmscConnection
     end
     private
     def internal_send(text,destination,source)
-      
+      self.port=portmap(source)
+        puts "hostname: #{self.hostname} port #{self.port} destination #{destination}"
       return send_block(text,destination,source) {  
           ht =Net::HTTP.start(self.hostname,self.port)
-          puts "hostname: #{self.hostname} port #{self.port} destination #{destination}"
+        
           url="/cgi-bin/sendsms?username=#{self.username}&password=#{self.password}&from=#{source}&to=#{destination}&text=#{text}"
           r=ht.get(url)
-          puts "url was: #{url}"
+          # puts "url was: #{url}"
           @res = r.code
           puts "r is: #{r.body} r.code is #{r.code}"
           #@flag=true if @res=200 || @res==302
