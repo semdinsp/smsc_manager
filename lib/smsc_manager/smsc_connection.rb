@@ -75,7 +75,7 @@ class SmscConnection
    # port map chooses which kannelport tosend it out on...
    def portmap(src)
      hash_port=Hash.new('26999')
-     ports = %w(930 999 991 992 913 )
+     ports = %w(930 999 991 992 913 900 901 980 990)
      ports.each { |p| hash_port[p]="26#{p}"  }
     # puts "--- src is #{src} port is #{hash_port[src]}"
      hash_port[src]
@@ -92,9 +92,8 @@ class SmscConnection
       self.port=portmap(source)
         puts "hostname: #{self.hostname} port #{self.port} destination #{destination}"
       return send_block(text,destination,source) {  
-          ht =Net::HTTP.start(self.hostname,self.port)
-        
-          url="/cgi-bin/sendsms?username=#{self.username}&password=#{self.password}&from=#{source}&to=#{destination}&text=#{text}"
+          ht =Net::HTTP.start(self.hostname,self.port)    
+      url="/cgi-bin/sendsms?username=#{self.username}&password=#{self.password}&from=#{source}&to=#{destination}&text=#{text}"
           r=ht.get(url)
           # puts "url was: #{url}"
           @res = r.code

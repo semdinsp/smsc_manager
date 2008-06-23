@@ -12,7 +12,7 @@ class SmsLog < ActiveRecord::Base
    #    sms_transaction_log.user=user
         sms_transaction_log.setup(sms)
         sms_transaction_log.username=user
-        puts "SMS LOG #{sms_transaction_log.inspect}: user #{user} flag: #{flag} res: #{res.inspect}"
+     #   puts "SMS LOG #{sms_transaction_log.inspect}: user #{user} flag: #{flag} res: #{res.inspect}"
         case flag
          when true
               if res.kind_of? Net::HTTPResponse    
@@ -26,7 +26,7 @@ class SmsLog < ActiveRecord::Base
                sms_transaction_log.response=9000
                sms_transaction_log.response_body=res.to_s
          end
-          puts "SMS LOG before save #{sms_transaction_log.inspect}"
+      #    puts "SMS LOG before save #{sms_transaction_log.inspect}"
           test= sms_transaction_log.save!
              puts "SMS LOG after save res: #{test.inspect}"
           sms_transaction_log=nil
